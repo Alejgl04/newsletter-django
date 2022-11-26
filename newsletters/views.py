@@ -1,5 +1,6 @@
-from django.core.checks import messages
+from django.contrib import messages
 from django.core.mail import send_mail, EmailMessage
+
 from django.conf import settings 
 from django.shortcuts import render
 

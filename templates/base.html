@@ -9,8 +9,9 @@
   <title>NewsLetter</title>
   {% tailwind_css %}
 </head>
-<body>
-  
+<body>  
+  {% block messages %}{% include 'messages.html' %}{% endblock messages %}
+
   {% block content %}
     
   {% endblock content %}

@@ -41,6 +41,14 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '7eb80ba4b9fd90'
+EMAIL_HOST_PASSWORD = '5361b052d3813d'
+EMAIL_PORT = '2525'
+
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 
@@ -126,8 +134,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '7eb80ba4b9fd90'
-EMAIL_HOST_PASSWORD = '5361b052d3813d'
-EMAIL_PORT = '2525'
