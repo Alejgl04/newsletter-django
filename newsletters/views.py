@@ -32,3 +32,20 @@ def newsLetterSigNup( request ):
   
   context = { 'form':form }
   return render( request, 'start-here.html', context )
+
+
+def newsLetterUnSuscribe( request ):
+  form = NewsLetterUserSignUpForm( request.POST or None )
+  if form.is_valid():
+    instance = form.save( commit= False )
+    if NewsLetterUser.objects.filter( email = instance.email ).exists():
+      NewsLetterUser.objects.filter( email = instance.email ).delete()
+      messages.success( request, 'Email removed')
+    else:
+      print('Email not found')
+      messages.warning( request, 'Email not found')
+
+    context = {
+      "form": form
+    }
+    return render( request, 'un_suscribe.html', context )
