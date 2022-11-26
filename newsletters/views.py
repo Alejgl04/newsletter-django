@@ -45,7 +45,7 @@ def newsLetterUnSuscribe( request ):
       print('Email not found')
       messages.warning( request, 'Email not found')
 
-    context = {
-      "form": form
-    }
-    return render( request, 'un_suscribe.html', context )
+  context = {
+    "form": form
+  }
+  return render( request, 'un_suscribe.html', context )
