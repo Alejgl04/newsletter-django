@@ -9,4 +9,5 @@ class NewsLetterUserSignUpForm( forms.ModelForm ):
 class NewsLetterCreationForm( forms.ModelForm ):
   class Meta:
     model = NewsLetter
-    fields = ['name','subject','body','email']
+    fields = ['name','subject','body','email','status']
+

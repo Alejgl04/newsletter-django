@@ -94,53 +94,35 @@
 
           <div>
             <div class="mt-8 flex gap-x-4 sm:justify-center">
-              <table class="min-w-full divide-y border-2 divide-gray-200">
-                <thead class="bg-gray-50">
-                  <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Name
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Subject
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Date Created
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th scope="col" class="relative px-6 py-3">
-                      <a href="{% url 'dashboard:create' %}" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">New email</a> 
-                      
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  
-                  {% for newsletter in newsletters  %}
-                    <tr>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{newsletter.name}}
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{newsletter.subject}}
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{newsletter.created}}
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{newsletter.status}}
-                      </td>
+              <form action="" method="POST">
+                {% csrf_token %}
+                <label class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+                  Name
+                </label>
+                {{ form.name }}
 
-                    </tr>
-                  {% endfor %}
-                  
-
-                  <!-- More people... -->
-                </tbody>
-              </table>
-
-
+                <label class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+                  Subject
+                </label>
+                {{ form.subject }}
+                
+                <label class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+                  Email
+                </label>
+                {{ form.email }}
+                
+                <label class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+                  Body
+                </label>
+                {{ form.body }}
+                
+                <label class="block text-sm font-medium dark:text-dark-txt text-gray-700">
+                  Status
+                </label>
+                {{ form.status }}
+                
+                <button type="submit" class="px-3 py-2 bg-blue-500 rounded-lg text-white">Submit</button>
+              </form>
             </div>
           </div>
           <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
