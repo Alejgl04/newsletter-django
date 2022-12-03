@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, UpdateView, DeleteView
 from newsletters.models import NewsLetter
 from newsletters.forms import NewsLetterCreationForm
 from django.conf import settings
@@ -58,3 +58,46 @@ class NewsLetterDetailView( View ):
       'newsletter':newsletter
     }
     return render( request, 'dashboard/detail.html', context )
+  
+class NewsLetterUpdateView(UpdateView):
+  model = NewsLetter
+  form_class = NewsLetterCreationForm
+  template_name = 'dashboard/update.html'
+  success_url = '/dashboard/detail/3/'
+  
+  def get_context_data(self, **kwargs):
+      context = super().get_context_data(**kwargs)
+      context.update({
+        'view_type': 'update'
+      })  
+      return context
+  
+  
+
+  def post( self, request, pk, *args, **kwargs):
+    newsletter = get_object_or_404( NewsLetter, pk = pk)
+
+    if request.method=="POST":
+      form = NewsLetterCreationForm(request.POST or None)
+      if form.is_valid():
+        instance = form.save()
+        newsletter = NewsLetter.objects.get( id = instance.id )
+
+        if newsletter.status == "Published":
+          subject = newsletter.subject
+          body = newsletter.body
+          from_email = settings.EMAIL_HOST_USER
+          for email in newsletter.email.all():
+            send_mail( subject = subject, from_email = from_email, recipient_list = [email], message = body, fail_silently = True )
+        return redirect('dashboard:detail', pk = newsletter.id) 
+    else:
+      form = NewsLetterCreationForm( instance= newsletter )
+    context= {
+
+    }
+    return render(request, 'dashboard/update.html', context)
+  
+class NewsLetterDeleteView( DeleteView ):
+  model = NewsLetter
+  template_name = 'dashboard/remove.html' 
+  success_url = '/dashboard/list/'

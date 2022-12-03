@@ -11,8 +11,8 @@ class NewsLetterUser( models.Model ):
 class NewsLetter( models.Model ):
 
   EMAILS_STATUS_CHOICES = (
-    ('Draft,','Draft'),
-    ('Published,','Published')
+    ('Draft','Draft'),
+    ('Published','Published')
   )
 
   name    = models.CharField( max_length=250 )
