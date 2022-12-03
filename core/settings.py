@@ -44,11 +44,12 @@ INTERNAL_IPS = [
 
 # EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST_USER = 'agadmin@gmail.com'
 
-EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '7eb80ba4b9fd90'
-EMAIL_HOST_PASSWORD = '5361b052d3813d'
-EMAIL_PORT = '2525'
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = '7eb80ba4b9fd90'
+# EMAIL_HOST_PASSWORD = '5361b052d3813d'
+# EMAIL_PORT = '2525'
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
